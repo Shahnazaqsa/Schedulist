@@ -1,0 +1,23 @@
+{% extends "layout.html" %} {% load widget_tweaks %} {% block content %}
+<div class="task-box col-12 col-md-10 col-lg-8">
+  <h2 class="mb-4 text-center text-primary fw-bold">Edit Task</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+    <div class="row">
+      {% for field in form %}
+      <div class="mb-3 col-md-6">
+        <label for="{{ field.id_for_label }}" class="form-label">
+          {{ field.label }}
+        </label>
+        {{ field|add_class:"form-control" }}
+        <div class="text-danger small">{{ field.errors }}</div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="d-grid mt-3">
+      <button type="submit" class="btn-custom">Update Task</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
